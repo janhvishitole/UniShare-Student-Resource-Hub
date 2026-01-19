@@ -1,0 +1,9 @@
+{
+  "name": "UniShare - BVDUCOEP Student Hub",
+  "description": "An exclusive marketplace, note-sharing, and tool-verification platform for BVDUCOEP engineering students, featuring AI-powered damage scanning and safe handover zone mapping.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation",
+    "microphone"
+  ]
+}

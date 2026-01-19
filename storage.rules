@@ -1,0 +1,18 @@
+
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper: Check if the user is authenticated and uses the university domain
+    function isUniversityUser() {
+      return request.auth != null && 
+             request.auth.token.email.endsWith('@bvuniversity.edu.in');
+    }
+
+    // Allow university students to read and write all assets (listings, profile photos)
+    match /{allPaths=**} {
+      allow read, write: if isUniversityUser();
+    }
+  }
+}

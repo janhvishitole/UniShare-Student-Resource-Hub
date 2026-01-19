@@ -1,0 +1,37 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper: Check if the user is authenticated and uses the university domain
+    function isUniversityUser() {
+      return request.auth != null && 
+             request.auth.token.email.endsWith('@bvuniversity.edu.in');
+    }
+
+    // User profiles: Only university students can view/manage profiles
+    match /users/{userId} {
+      allow read, write: if isUniversityUser();
+    }
+
+    // Marketplace listings: Public to university students for trade
+    match /listings/{listingId} {
+      allow read, write: if isUniversityUser();
+    }
+
+    // Study notes: Shared academic resources
+    match /notes/{noteId} {
+      allow read, write: if isUniversityUser();
+    }
+    
+    // Trade statuses and reports
+    match /trades/{tradeId} {
+      allow read, write: if isUniversityUser();
+    }
+    
+    match /reports/{reportId} {
+      allow read, write: if isUniversityUser();
+    }
+  }
+}
