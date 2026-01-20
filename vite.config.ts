@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
   return {
-    base: '/UniShare-Student-Resource-Hub/', // This fixes the blank screen
+    base: '/UniShare-Student-Resource-Hub/', 
     server: {
       port: 3000,
       host: '0.0.0.0',
